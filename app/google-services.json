@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "183214707827",
+    "project_id": "widget-inventory",
+    "storage_bucket": "widget-inventory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183214707827:android:fb2366d1216ed7a2e40606",
+        "android_client_info": {
+          "package_name": "com.appmovil.movilapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLRFNrF3UxzqZu-pjNf81ochKpd0F5nXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
