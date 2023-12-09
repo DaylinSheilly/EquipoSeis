@@ -1,5 +1,7 @@
 package com.appmovil.movilapp.view.viewHolder
 
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.appmovil.movilapp.databinding.RvHomeInventarioBinding
@@ -15,5 +17,12 @@ class ArticulosViewHolder (binding: RvHomeInventarioBinding):RecyclerView.ViewHo
         bindingArticulo.idProducto.text = articulo.codigo.toString()
         val precio = "$ "+ articulo.precio.toString()
         bindingArticulo.precioProducto.text = precio
+        selectArticuloInventory(articulo)
+    }
+
+    fun selectArticuloInventory(articulo: Articulo){
+        bindingArticulo.cvInventory.setOnClickListener{
+            //  TODO: agregar navegación hacia HU5 y pasarle el articulo
+        }
     }
 }

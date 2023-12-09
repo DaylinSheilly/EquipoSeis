@@ -60,9 +60,15 @@ class HomeInventoryFragment : Fragment() {
     }
 
 
-    private fun listarProducto(){
+    private fun listarProducto() {
+        // Mostrar el ProgressBar
+        binding.progressBar.visibility = View.VISIBLE
+
         articulosViewModel.getListArticulos()
         articulosViewModel.listInventory.observe(viewLifecycleOwner) { lista ->
+            // Ocultar el ProgressBar
+            binding.progressBar.visibility = View.GONE
+
             val recycler = binding.recyclerview
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
@@ -70,11 +76,9 @@ class HomeInventoryFragment : Fragment() {
             val adapter = ArticulosAdapter(reversedList)
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
-
-
-//            Toast.makeText(requireContext(),"aymamamia",Toast.LENGTH_LONG).show()
         }
     }
+
 
     private fun logOut() {
         sharedPreferences.edit().clear().apply()

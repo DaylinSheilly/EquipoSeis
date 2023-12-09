@@ -18,6 +18,9 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
+        
+    <style name="ProgressBarStyle" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:progressDrawable">@drawable/custom_progress_bar</item>
     </style>
 
 </resources>
