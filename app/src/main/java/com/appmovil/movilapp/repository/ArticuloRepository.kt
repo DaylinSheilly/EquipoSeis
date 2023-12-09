@@ -1,5 +1,6 @@
 package com.appmovil.movilapp.repository
 
+import com.appmovil.movilapp.model.Articulo
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -21,4 +22,22 @@ class ArticuloRepository @Inject constructor(
         }
         return total
         }
+
+    suspend fun getListArticulo():MutableList<Articulo> {
+        val querySnapshot = db.collection("articulo").get().await()
+        val listArticulos = mutableListOf<Articulo>()
+
+        for (document in querySnapshot.documents) {
+            // Construir un objeto Articulo con los datos del documento
+            val articulo = Articulo(
+                codigo = document.getLong("codigo")?.toInt() ?: 0,
+                nombre = document.getString("nombre") ?: "",
+                precio = document.getLong("precio")?.toInt() ?: 0,
+                cantidad = document.getLong("cantidad")?.toInt() ?: 0
+            )
+            listArticulos.add(articulo)
+        }
+        return listArticulos
     }
+}
+

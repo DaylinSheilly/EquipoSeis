@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.appmovil.movilapp.view.fragment.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        android:name="com.appmovil.movilapp.view.HomeInventoryFragment"
+        android:label="HomeInventoryFragment"
+        tools:layout="@layout/fragment_home_inventario"/>
 </navigation>
