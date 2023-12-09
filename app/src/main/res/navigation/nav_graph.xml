@@ -3,11 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/homeInventoryFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/homeInventoryFragment"
+        android:name="com.appmovil.movilapp.view.HomeInventoryFragment"
+        android:label="HomeInventoryFragment"
+        tools:layout="@layout/fragment_home_inventario">
+        <action
+            android:id="@+id/action_homeInventoryFragment_to_agregarArticulo"
+            app:destination="@id/agregarArticulo" />
+    </fragment>
+    <fragment
+        android:id="@+id/agregarArticulo"
         android:name="com.appmovil.movilapp.view.fragment.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+    </fragment>
 </navigation>
