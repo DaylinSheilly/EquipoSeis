@@ -11,7 +11,9 @@ import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.ActivityHomeBinding
 import com.appmovil.movilapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -13,6 +13,7 @@ class ArticulosViewHolder (binding: RvHomeInventarioBinding):RecyclerView.ViewHo
         // Asigna los valores a las vistas en el ViewHolder
         bindingArticulo.nombreProducto.text = articulo.nombre
         bindingArticulo.idProducto.text = articulo.codigo.toString()
-        bindingArticulo.precioProducto.text = articulo.precio.toString()
+        val precio = "$ "+ articulo.precio.toString()
+        bindingArticulo.precioProducto.text = precio
     }
 }
