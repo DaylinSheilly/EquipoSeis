@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentHomeInventarioBinding
 import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.adapter.ArticulosAdapter
@@ -47,14 +49,16 @@ class HomeInventoryFragment : Fragment() {
             logOut()
         }
         binding.btnAdicionarArticulo.setOnClickListener{
-            guardarProducto()
+            nuevoProducto()
         }
     }
 
-    private fun guardarProducto() {
-        // TODO:navbar que te lleva a HU4
-        Toast.makeText(requireContext(), "Pasar a HU4", Toast.LENGTH_SHORT).show()
-        }
+    private fun nuevoProducto() {
+        val navController = findNavController()
+        // Realiza la navegación hacia la acción homeInventoryFragment->agregarArticulo
+        navController.navigate(R.id.action_homeInventoryFragment_to_agregarArticulo)
+    }
+
 
     private fun listarProducto(){
         articulosViewModel.getListArticulos()
