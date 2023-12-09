@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fbagregar"
+            android:id="@+id/btnAdicionarArticulo"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:contentDescription="button add"
