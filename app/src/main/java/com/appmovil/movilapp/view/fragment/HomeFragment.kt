@@ -34,14 +34,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
         setup()
-        listarProducto()
 
     }
 
     private fun setup() {
-        binding.btnLogOut.setOnClickListener {
-            logOut()
-        }
         binding.btnGuardarArticulo.setOnClickListener {
             guardarProducto()
         }
@@ -71,28 +67,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun listarProducto(){
-        db.collection("articulo").get().addOnSuccessListener {
-            var data = ""
-            for (document in it.documents) {
-                // Aquí puedes personalizar cómo deseas mostrar cada artículo en la lista
-                data += "Código: ${document.get("codigo")} " +
-                        "Nombre: ${document.get("nombre")} " +
-                        "Precio: ${document.get("precio")} " +
-                        "Cantidad: ${document.get("cantidad")} \n\n"
-            }
-            binding.tvListProducto.text = data
-        }
-    }
-
-    private fun logOut() {
-        sharedPreferences.edit().clear().apply()
-        FirebaseAuth.getInstance().signOut()
-        (requireActivity() as HomeActivity).apply {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-    }
 
     private fun limpiarCampos() {
         binding.etCodigo.setText("")

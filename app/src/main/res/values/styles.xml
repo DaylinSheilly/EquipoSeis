@@ -9,4 +9,15 @@
         <item name="android:background">?android:attr/colorBackground</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+
+    <style name="EditTextWhiteBorder" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_text_white_border</item>
+    </style>
+
+    <style name="TextInputLayoutHint" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
