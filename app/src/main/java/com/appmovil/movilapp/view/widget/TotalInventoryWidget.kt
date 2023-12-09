@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.RemoteViews
 import com.appmovil.movilapp.R
 import com.appmovil.movilapp.repository.ArticuloRepository
+import com.appmovil.movilapp.view.HomeActivity
 import com.appmovil.movilapp.view.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -78,6 +79,7 @@ class TotalInventoryWidget: AppWidgetProvider() {
 
                         val loginIntent = Intent(context, LoginActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            putExtra("OnLoginRedirectToWidget", true)
                         }
                         context.startActivity(loginIntent)
                     }
@@ -98,8 +100,19 @@ class TotalInventoryWidget: AppWidgetProvider() {
                     }
                 }
             }
-            }
-
+            }else if (intent?.action == "GO_INVENTORY") {
+                if(sesion(context!!)){
+                    val inventoryIntent = Intent(context, HomeActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                    context.startActivity(inventoryIntent)
+                 }else{
+                    val loginIntent = Intent(context, LoginActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        putExtra("OnLoginRedirectToIventory", true)
+                    }
+                    context.startActivity(loginIntent)
+                }
         }
     }
 
@@ -128,21 +141,33 @@ internal fun updateAppWidget(
 
     views.setOnClickPendingIntent(R.id.totalVisibility, pendingIntent)
 
-    if(totalVisible){
+    val intentGoInventory = Intent(context, TotalInventoryWidget::class.java)
+    intentGoInventory.action = "GO_INVENTORY"
+
+    val pendingIntentGoInventory = PendingIntent.getBroadcast(
+        context,
+        1,
+        intentGoInventory,
+        PendingIntent.FLAG_UPDATE_CURRENT
+    )
+
+    views.setOnClickPendingIntent(R.id.goIventory, pendingIntentGoInventory)
+
+    if (totalVisible) {
         views.setTextViewText(R.id.totalPrice, "$****")
         appWidgetManager.updateAppWidget(appWidgetId, views)
-    }else{
+    } else {
         CoroutineScope(Dispatchers.IO).launch {
             val total = articuloRepository.getTotalArticulos()
             val formato = NumberFormat.getNumberInstance(Locale("es", "ES"))
             formato.minimumFractionDigits = 2
             val totalFormateado = formato.format(total)
-            CoroutineScope(Dispatchers.Main).launch{
+            CoroutineScope(Dispatchers.Main).launch {
                 views.setTextViewText(R.id.totalPrice, "$$totalFormateado")
                 appWidgetManager.updateAppWidget(appWidgetId, views)
             }
         }
     }
-
+}
 
 }

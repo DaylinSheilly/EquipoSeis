@@ -39,6 +39,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setup() {
+        binding.btnLogOut.setOnClickListener {
+            logOut()
+        }
         binding.btnGuardarArticulo.setOnClickListener {
             guardarProducto()
         }
