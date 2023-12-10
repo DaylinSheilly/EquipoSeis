@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Id: *valor unidad*"
-                    android:textColor="@color/transBlack"
+                    android:textColor="@color/darkOrange"
                     android:padding="5dp"
                     android:textSize="15sp"
                     card_view:layout_constraintTop_toBottomOf="@+id/nombre_producto"
@@ -90,6 +90,7 @@
                     android:textColor="@color/transBlack"
                     android:padding="5dp"
                     android:textSize="15sp"
+                    android:textStyle="bold"
                     card_view:layout_constraintTop_toBottomOf="@+id/cantidad_disponible"
                     card_view:layout_constraintStart_toStartOf="parent"/>
                 <TextView
@@ -97,9 +98,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Id: *valor cantidad*"
-                    android:textColor="@color/transBlack"
+                    android:textColor="@color/darkOrange"
                     android:padding="5dp"
                     android:textSize="15sp"
+                    android:textStyle="bold"
                     card_view:layout_constraintTop_toBottomOf="@+id/valor_cantidad"
                     card_view:layout_constraintEnd_toEndOf="parent"/>
 

@@ -44,18 +44,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+
+        <include
+            android:id="@+id/detalles"
+            layout="@layout/rv_home_detalles"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="25dp"
-            tools:listitem="@layout/rv_home_inventario"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="90dp" />
+
+        
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnEditarArticulo"
             android:layout_width="wrap_content"
