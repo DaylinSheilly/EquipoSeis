@@ -10,13 +10,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.appmovil.movilapp.databinding.FragmentHomeBinding
+import com.appmovil.movilapp.databinding.FragmentVerDetallesBinding
 import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.HomeActivity
 import com.appmovil.movilapp.view.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class HomeFragment : Fragment() {
+class HomeDetalleFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var sharedPreferences: SharedPreferences
     private val db = FirebaseFirestore.getInstance()
@@ -25,7 +26,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater)
+        binding = FragmentVerDetallesBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }

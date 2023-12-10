@@ -16,6 +16,7 @@ import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentHomeInventarioBinding
 import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.adapter.ArticulosAdapter
+import com.appmovil.movilapp.view.fragment.HomeDetalleFragment
 import com.appmovil.movilapp.viewmodel.ArticulosViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -73,12 +74,20 @@ class HomeInventoryFragment : Fragment() {
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
             val reversedList: MutableList<Articulo> = lista.toMutableList().asReversed()
-            val adapter = ArticulosAdapter(reversedList)
+            val adapter = ArticulosAdapter(reversedList) { articulo ->
+                verDetalles(articulo)
+            }
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
         }
     }
 
+    private fun verDetalles(articulo: Articulo) {
+        (requireActivity() as HomeActivity).apply {
+            startActivity(Intent(this, HomeDetalleFragment::class.java))
+            finish()
+        }
+    }
 
     private fun logOut() {
         sharedPreferences.edit().clear().apply()
