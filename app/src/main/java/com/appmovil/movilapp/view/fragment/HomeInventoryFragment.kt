@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentHomeInventarioBinding
 import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.adapter.ArticulosAdapter
-import com.appmovil.movilapp.view.fragment.HomeDetalleFragment
 import com.appmovil.movilapp.viewmodel.ArticulosViewModel
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,18 +72,9 @@ class HomeInventoryFragment : Fragment() {
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
             val reversedList: MutableList<Articulo> = lista.toMutableList().asReversed()
-            val adapter = ArticulosAdapter(reversedList) { articulo ->
-                verDetalles(articulo)
-            }
+            val adapter = ArticulosAdapter(reversedList, findNavController())
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
-        }
-    }
-
-    private fun verDetalles(articulo: Articulo) {
-        (requireActivity() as HomeActivity).apply {
-            startActivity(Intent(this, HomeDetalleFragment::class.java))
-            finish()
         }
     }
 

@@ -13,7 +13,21 @@
         <action
             android:id="@+id/action_homeInventoryFragment_to_agregarArticulo"
             app:destination="@id/agregarArticulo" />
+        <action
+            android:id="@+id/action_homeInventoryFragment_to_homeDetallesFragment"
+            app:destination="@+id/homeDetalleFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/homeDetalleFragment"
+        android:name="com.appmovil.movilapp.view.fragment.HomeDetalleFragment"
+        android:label="HomeDetalleFragment"
+        tools:layout="@layout/fragment_ver_detalles">
+        <action
+            android:id="@+id/action_homeDetalleFragment_to_homeInvetoryFragment"
+            app:destination="@+id/homeInventoryFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/agregarArticulo"
         android:name="com.appmovil.movilapp.view.fragment.HomeFragment"
