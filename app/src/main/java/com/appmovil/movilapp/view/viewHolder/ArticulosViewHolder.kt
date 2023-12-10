@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.appmovil.movilapp.databinding.RvHomeInventarioBinding
 import com.appmovil.movilapp.model.Articulo
 import android.content.Context
+import android.os.Bundle
 import androidx.navigation.NavController
 import com.appmovil.movilapp.R
 
@@ -23,7 +24,6 @@ class ArticulosViewHolder (binding: RvHomeInventarioBinding, navController: NavC
 
     fun selectArticuloInventory(articulo: Articulo, context: Context){
         bindingArticulo.cvInventory.setOnClickListener{
-//            Toast.makeText(context, "producto ${articulo.nombre}", Toast.LENGTH_SHORT).show()
             // Realiza la navegación hacia la acción homeInventoryFragment->agregarArticulo
             navController.navigate(R.id.action_homeInventoryFragment_to_homeDetallesFragment)
         }

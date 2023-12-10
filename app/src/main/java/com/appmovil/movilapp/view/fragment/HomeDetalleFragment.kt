@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentVerDetallesBinding
 import com.appmovil.movilapp.model.Articulo
+import com.appmovil.movilapp.view.adapter.ArticulosAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 
-class HomeDetalleFragment(articulo: Articulo) : Fragment() {
+class HomeDetalleFragment() : Fragment() {
     private lateinit var binding: FragmentVerDetallesBinding
     private lateinit var sharedPreferences: SharedPreferences
     private val db = FirebaseFirestore.getInstance()
@@ -36,6 +40,9 @@ class HomeDetalleFragment(articulo: Articulo) : Fragment() {
         binding.btnEliminarArticulo.setOnClickListener {
             eliminarProducto()
         }
+        binding.contentToolbar.backToolbar.setOnClickListener {
+            volverMenu()
+        }
         cargarDetalles()
     }
     private fun eliminarProducto() {
@@ -43,8 +50,20 @@ class HomeDetalleFragment(articulo: Articulo) : Fragment() {
     }
 
     private fun cargarDetalles() {
-//        val detalles = binding.detalles
-        Toast.makeText(requireContext(), "Producto: ", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "producto ${articulo.nombre}", Toast.LENGTH_SHORT).show()
+
+        binding.progressBar.visibility = View.VISIBLE
+
+        binding.cardDetalles.nombreProducto.text = Articulo.name;
+
+        binding.progressBar.visibility = View.GONE
+
+    }
+
+    private fun volverMenu() {
+        val navController = findNavController()
+        // Realiza la navegación hacia la acción homeInventoryFragment->agregarArticulo
+        navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
     }
 
 
