@@ -57,7 +57,9 @@ class HomeDetalleFragment() : Fragment() {
     }
 
     private fun eliminarProducto() {
-//        db.collection("articulo").document(articulo.codigo.toString()).delete()
+        db.collection("articulo").document(receivedArticulo.codigo.toString()).delete()
+        val navController = findNavController()
+        navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
     }
 
     private fun cargarDetalles() {
