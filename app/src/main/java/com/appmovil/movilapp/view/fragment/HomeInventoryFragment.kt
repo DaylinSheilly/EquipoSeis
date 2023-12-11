@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appmovil.movilapp.R
@@ -18,7 +18,6 @@ import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.adapter.ArticulosAdapter
 import com.appmovil.movilapp.viewmodel.ArticulosViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -73,12 +72,11 @@ class HomeInventoryFragment : Fragment() {
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
             val reversedList: MutableList<Articulo> = lista.toMutableList().asReversed()
-            val adapter = ArticulosAdapter(reversedList)
+            val adapter = ArticulosAdapter(reversedList, findNavController())
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
         }
     }
-
 
     private fun logOut() {
         sharedPreferences.edit().clear().apply()
