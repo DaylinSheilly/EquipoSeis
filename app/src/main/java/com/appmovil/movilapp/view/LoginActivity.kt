@@ -3,6 +3,8 @@ package com.appmovil.movilapp.view
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -31,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
         setup()
         controladores()
         binding.btnLogin.isEnabled = false
+        binding.tvRegister.setTextColor(Color.parseColor("#9EA1A1"))
+        binding.tvRegister.isEnabled = false
     }
     private fun controladores(){
         minPass()
@@ -38,11 +42,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginButton() {
-        val button = binding.btnLogin
-        val email = binding.etEmail.text.toString()
-        var emailBool = false
-        val pass = binding.etPass.text.toString()
-        var passBool = false
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -72,6 +71,9 @@ class LoginActivity : AppCompatActivity() {
 
         // Habilita el botón si ambos campos están llenos, de lo contrario, deshabilítalo
         binding.btnLogin.isEnabled = email.isNotEmpty() && password.isNotEmpty()
+        binding.tvRegister.isEnabled = email.isNotEmpty() && password.isNotEmpty()
+        binding.tvRegister.setTextColor(Color.parseColor("#FFFFFFFF"))
+        binding.tvRegister.setTypeface(Typeface.DEFAULT_BOLD)
     }
 
 
@@ -81,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
             if (errorVar && binding.etPass.text.toString().length > 5){
                 pass.error = null
                 errorVar = false
-                Toast.makeText(this, "quitar?", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "quitar?", Toast.LENGTH_SHORT).show()
             }
         }
 
