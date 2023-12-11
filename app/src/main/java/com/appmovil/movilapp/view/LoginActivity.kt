@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
             loginUser()
         }
     }
+
     private fun registerUser(){
         val email = binding.etEmail.text.toString()
         val pass = binding.etPass.text.toString()
