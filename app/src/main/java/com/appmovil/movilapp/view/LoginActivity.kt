@@ -58,20 +58,27 @@ class LoginActivity : AppCompatActivity() {
     private fun loginUser(){
         val email = binding.etEmail.text.toString()
         val pass = binding.etPass.text.toString()
-        loginViewModel.loginUser(email,pass){ isLogin ->
-            if (isLogin){
-                sharedPreferences.edit().putString("email",email).apply()
-                if(intent.extras?.containsKey("OnLoginRedirectToWidget") == true){
-                    goToHome(email)
-                    moveTaskToBack(true)
-                }else{
-                    goToHome(email)
-                }
+        if (pass.length > 5){
+            loginViewModel.loginUser(email,pass){ isLogin ->
+                if (isLogin){
+                    sharedPreferences.edit().putString("email",email).apply()
+                    if(intent.extras?.containsKey("OnLoginRedirectToWidget") == true){
+                        goToHome(email)
+                        moveTaskToBack(true)
+                    }else{
+                        goToHome(email)
+                    }
 
-            }else {
-                Toast.makeText(this, "Login incorrecto", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(this, "Login incorrecto", Toast.LENGTH_SHORT).show()
+                }
             }
+        }else{
+            val pass = binding.tilPass
+            pass.error = "Mínimo 6 dígitos"
+            Toast.makeText(this, "666", Toast.LENGTH_SHORT).show()
         }
+
     }
     private fun sesion(){
         val email = sharedPreferences.getString("email",null)
