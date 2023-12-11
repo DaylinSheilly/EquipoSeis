@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -28,15 +30,57 @@ class LoginActivity : AppCompatActivity() {
         sesion()
         setup()
         controladores()
+        binding.btnLogin.isEnabled = false
     }
     private fun controladores(){
         minPass()
+        loginButton()
     }
+
+    private fun loginButton() {
+        val button = binding.btnLogin
+        val email = binding.etEmail.text.toString()
+        var emailBool = false
+        val pass = binding.etPass.text.toString()
+        var passBool = false
+        binding.etEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Verifica si ambos campos están llenos y habilita o deshabilita el botón en consecuencia
+                checkFieldsAndEnableButton()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.etPass.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Verifica si ambos campos están llenos y habilita o deshabilita el botón en consecuencia
+                checkFieldsAndEnableButton()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+    }
+    fun checkFieldsAndEnableButton() {
+        val email = binding.etEmail.text.toString()
+        val password = binding.etPass.text.toString()
+
+        // Habilita el botón si ambos campos están llenos, de lo contrario, deshabilítalo
+        binding.btnLogin.isEnabled = email.isNotEmpty() && password.isNotEmpty()
+    }
+
+
     private fun minPass(){
         val pass = binding.tilPass
         binding.etPass.addTextChangedListener {
             if (errorVar && binding.etPass.text.toString().length > 5){
                 pass.error = null
+                errorVar = false
                 Toast.makeText(this, "quitar?", Toast.LENGTH_SHORT).show()
             }
         }
