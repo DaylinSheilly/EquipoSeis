@@ -63,14 +63,12 @@ class HomeDetalleFragment() : Fragment() {
     }
 
     private fun cargarDetalles() {
-//        Toast.makeText(context, "producto ${receivedArticulo.nombre}", Toast.LENGTH_SHORT).show()
-
         binding.progressBar.visibility = View.VISIBLE
 
         binding.cardDetalles.nombreProducto.text = receivedArticulo.nombre
-        binding.cardDetalles.valorUnidad.text = receivedArticulo.precio.toString()
+        binding.cardDetalles.valorUnidad.text = "$ " + receivedArticulo.precio.toString()
         binding.cardDetalles.valorCantidad.text = receivedArticulo.cantidad.toString()
-        binding.cardDetalles.valorTotal.text = (receivedArticulo.precio * receivedArticulo.cantidad).toString()
+        binding.cardDetalles.valorTotal.text = "$ " + (receivedArticulo.precio * receivedArticulo.cantidad).toString()
 
         binding.progressBar.visibility = View.GONE
 
