@@ -6,20 +6,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentVerDetallesBinding
 import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.adapter.ArticulosAdapter
+import com.appmovil.movilapp.viewmodel.ArticulosViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeDetalleFragment() : Fragment() {
     private lateinit var binding: FragmentVerDetallesBinding
     private lateinit var sharedPreferences: SharedPreferences
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var receivedArticulo: Articulo
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +37,7 @@ class HomeDetalleFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
+        dataArticulo()
         setup()
     }
 
@@ -45,16 +50,25 @@ class HomeDetalleFragment() : Fragment() {
         }
         cargarDetalles()
     }
+
+    private fun dataArticulo() {
+        val receivedBundle = arguments
+        receivedArticulo = receivedBundle?.getSerializable("articulo") as Articulo
+    }
+
     private fun eliminarProducto() {
 //        db.collection("articulo").document(articulo.codigo.toString()).delete()
     }
 
     private fun cargarDetalles() {
-        Toast.makeText(context, "producto ${articulo.nombre}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "producto ${receivedArticulo.nombre}", Toast.LENGTH_SHORT).show()
 
         binding.progressBar.visibility = View.VISIBLE
 
-        binding.cardDetalles.nombreProducto.text = Articulo.name;
+        binding.cardDetalles.nombreProducto.text = receivedArticulo.nombre
+        binding.cardDetalles.valorUnidad.text = receivedArticulo.precio.toString()
+        binding.cardDetalles.valorCantidad.text = receivedArticulo.cantidad.toString()
+        binding.cardDetalles.valorTotal.text = (receivedArticulo.precio * receivedArticulo.cantidad).toString()
 
         binding.progressBar.visibility = View.GONE
 

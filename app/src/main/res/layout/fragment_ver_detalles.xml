@@ -68,7 +68,7 @@
             android:layout_marginLeft="20dp"
             android:textColor="@color/white"
             android:backgroundTint="@color/darkOrange"
-            app:layout_constraintTop_toBottomOf="@+id/detalles" />
+            app:layout_constraintTop_toBottomOf="@+id/card_detalles" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnEditarArticulo"

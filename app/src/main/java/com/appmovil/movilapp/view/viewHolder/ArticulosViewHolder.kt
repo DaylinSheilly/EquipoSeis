@@ -25,7 +25,9 @@ class ArticulosViewHolder (binding: RvHomeInventarioBinding, navController: NavC
     fun selectArticuloInventory(articulo: Articulo, context: Context){
         bindingArticulo.cvInventory.setOnClickListener{
             // Realiza la navegación hacia la acción homeInventoryFragment->agregarArticulo
-            navController.navigate(R.id.action_homeInventoryFragment_to_homeDetallesFragment)
+            val bundle = Bundle()
+            bundle.putSerializable("articulo", articulo)
+            navController.navigate(R.id.action_homeInventoryFragment_to_homeDetallesFragment, bundle)
         }
     }
 }
