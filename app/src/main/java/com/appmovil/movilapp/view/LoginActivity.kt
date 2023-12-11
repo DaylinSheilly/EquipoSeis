@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.ActivityLoginBinding
@@ -19,13 +20,29 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var sharedPreferences: SharedPreferences
+    var errorVar = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
         sharedPreferences = getSharedPreferences("shared", Context.MODE_PRIVATE)
         sesion()
         setup()
+        controladores()
     }
+    private fun controladores(){
+        minPass()
+    }
+    private fun minPass(){
+        val pass = binding.tilPass
+        binding.etPass.addTextChangedListener {
+            if (errorVar && binding.etPass.text.toString().length > 5){
+                pass.error = null
+                Toast.makeText(this, "quitar?", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
     private fun setup() {
         binding.tvRegister.setOnClickListener {
             registerUser()
@@ -76,7 +93,8 @@ class LoginActivity : AppCompatActivity() {
         }else{
             val pass = binding.tilPass
             pass.error = "Mínimo 6 dígitos"
-            Toast.makeText(this, "666", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "666", Toast.LENGTH_SHORT).show()
+            errorVar = true
         }
 
     }
