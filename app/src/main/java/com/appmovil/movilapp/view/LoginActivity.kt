@@ -83,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
             if (errorVar && binding.etPass.text.toString().length > 5){
                 pass.error = null
                 errorVar = false
+                pass.boxStrokeColor = resources.getColor(R.color.white)
 //                Toast.makeText(this, "quitar?", Toast.LENGTH_SHORT).show()
             }
         }
