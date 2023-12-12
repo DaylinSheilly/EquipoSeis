@@ -23,6 +23,7 @@
             card_view:layout_constraintEnd_toEndOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/inventory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
