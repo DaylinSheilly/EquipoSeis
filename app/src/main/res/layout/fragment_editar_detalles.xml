@@ -29,26 +29,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contentToolbar">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/etCodigo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Código producto"
-                app:hintTextAppearance="@style/TextInputLayoutHint"
-                app:hintTextColor="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCodigo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    style="@style/EditTextWhiteBorder"
-                    android:padding="16dp"
-                    android:hint="Código producto"
-                    android:inputType="number"
-                    android:maxLength="4"
-                    android:textColor="@color/white" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="20dp"
+                android:text="Hola"
+                />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -113,18 +100,20 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <Button
-                android:id="@+id/btnGuardarArticulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:clickable="false"
-                android:text="Guardar"
-                android:textColor="@color/orange"
-                android:background="@drawable/button_rounded_corners"/>
-
         </LinearLayout>
+        <Button
+            android:id="@+id/btnEliminarArticulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:clickable="false"
+            android:text="Editar"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/darkOrange"
+            app:layout_constraintTop_toBottomOf="@+id/llContenedor1" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
