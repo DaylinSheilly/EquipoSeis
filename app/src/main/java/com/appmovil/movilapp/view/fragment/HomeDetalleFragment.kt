@@ -42,6 +42,9 @@ class HomeDetalleFragment() : Fragment() {
     }
 
     private fun setup() {
+        binding.btnEditarArticulo.setOnClickListener {
+            editarProducto()
+        }
         binding.btnEliminarArticulo.setOnClickListener {
             eliminarProducto()
         }
@@ -58,6 +61,8 @@ class HomeDetalleFragment() : Fragment() {
 
     private fun editarProducto() {
         val navController = findNavController()
+        val bundle = Bundle()
+        bundle.putSerializable("articulo", receivedArticulo)
         navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
     }
 

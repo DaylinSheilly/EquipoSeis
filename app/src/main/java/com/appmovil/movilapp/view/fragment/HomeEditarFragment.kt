@@ -12,12 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentEditarDetallesBinding
+import com.appmovil.movilapp.model.Articulo
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeEditarFragment : Fragment() {
     private lateinit var binding: FragmentEditarDetallesBinding
     private lateinit var sharedPreferences: SharedPreferences
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var receivedArticulo: Articulo
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,16 +33,30 @@ class HomeEditarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
+        dataArticulo()
         setup()
-
     }
 
     private fun setup() {
         binding.btnActualizarArticulo.setOnClickListener {
-            editarProducto()
+            actualizarProducto()
         }
+        cargarDetalles()
     }
-    private fun editarProducto() {
+
+    private fun dataArticulo() {
+        val receivedBundle = arguments
+        receivedArticulo = receivedBundle?.getSerializable("articulo") as Articulo
+    }
+
+    private fun cargarDetalles() {
+        binding.etCodigo.text = "Id: " + receivedArticulo.codigo
+        binding.etNombreArticulo.setText(receivedArticulo.nombre)
+        binding.etPrecio.setText(receivedArticulo.precio)
+        binding.etCantidad.setText(receivedArticulo.cantidad)
+    }
+
+    private fun actualizarProducto() {
         val nombre = binding.etNombreArticulo.text.toString()
         val precio = binding.etPrecio.text.toString()
         val cantidad = binding.etCantidad.text.toString()
