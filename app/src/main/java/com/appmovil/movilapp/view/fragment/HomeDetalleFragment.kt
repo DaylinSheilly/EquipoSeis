@@ -56,6 +56,11 @@ class HomeDetalleFragment() : Fragment() {
         receivedArticulo = receivedBundle?.getSerializable("articulo") as Articulo
     }
 
+    private fun editarProducto() {
+        val navController = findNavController()
+        navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
+    }
+
     private fun eliminarProducto() {
         db.collection("articulo").document(receivedArticulo.codigo.toString()).delete()
         val navController = findNavController()
