@@ -42,7 +42,7 @@ class HomeEditarFragment : Fragment() {
             actualizarProducto()
         }
         binding.contentToolbar.backToolbar.setOnClickListener {
-            volverMenu()
+            volverDetalles()
         }
         cargarDetalles()
     }
@@ -60,30 +60,30 @@ class HomeEditarFragment : Fragment() {
     }
 
     private fun actualizarProducto() {
+        val codigo = receivedArticulo.codigo
         val nombre = binding.etNombreArticulo.text.toString()
         val precio = binding.etPrecio.text.toString()
         val cantidad = binding.etCantidad.text.toString()
 
         if (nombre.isNotEmpty() && precio.isNotEmpty() && cantidad.isNotEmpty()) {
-//            val articulo = Articulo(codigo.toInt(), nombre, precio.toInt(), cantidad.toInt())
-//
-//            db.collection("articulo").document(articulo.codigo.toString()).set(
-//                hashMapOf(
-//                    "codigo" to articulo.codigo,
-//                    "nombre" to articulo.nombre,
-//                    "precio" to articulo.precio,
-//                    "cantidad" to articulo.cantidad
-//                )
-//            )
+            val articulo = Articulo(codigo.toInt(), nombre, precio.toInt(), cantidad.toInt())
+
+            db.collection("articulo").document(articulo.codigo.toString()).update(
+                mapOf(
+                    "nombre" to articulo.nombre,
+                    "precio" to articulo.precio,
+                    "cantidad" to articulo.cantidad,
+                )
+            )
 
             Toast.makeText(context, "Articulo actualizado", Toast.LENGTH_SHORT).show()
-            volverMenu()
+            volverDetalles()
         } else {
             Toast.makeText(context, "Llene los campos", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun volverMenu() {
+    private fun volverDetalles() {
         val navController = findNavController()
         // Realiza la navegación hacia la acción homeInventoryFragment->agregarArticulo
         val bundle = Bundle()
