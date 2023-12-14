@@ -1,21 +1,17 @@
 package com.appmovil.movilapp.view.fragment
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.navigation.fragment.findNavController
+import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentHomeBinding
 import com.appmovil.movilapp.model.Articulo
-import com.appmovil.movilapp.view.HomeActivity
-import com.appmovil.movilapp.view.LoginActivity
 import com.appmovil.movilapp.view.widget.TotalInventoryWidget
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment() {
@@ -40,6 +36,9 @@ class HomeFragment : Fragment() {
     private fun setup() {
         binding.btnGuardarArticulo.setOnClickListener {
             guardarProducto()
+        }
+        binding.contentToolbar.backToolbar.setOnClickListener {
+            volverMenu()
         }
     }
     private fun guardarProducto() {
@@ -71,6 +70,10 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun volverMenu() {
+        val navController = findNavController()
+        navController.navigate(R.id.action_homeFragment_to_homeInvetoryFragment)
+    }
 
     private fun limpiarCampos() {
         binding.etCodigo.setText("")
