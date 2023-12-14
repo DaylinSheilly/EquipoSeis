@@ -36,17 +36,18 @@
                 app:hintTextAppearance="@style/TextInputLayoutHint"
                 app:hintTextColor="@color/white">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/etCodigo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    style="@style/EditTextWhiteBorder"
                     android:padding="16dp"
                     android:hint="Código producto"
+                    android:textSize="18sp"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    style="@style/EditTextWhiteBorder"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,12 +63,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    style="@style/EditTextWhiteBorder"
                     android:padding="16dp"
                     android:hint="Nombre artículo"
                     android:inputType="text"
+                    android:textSize="18sp"
                     android:maxLength="40"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    style="@style/EditTextWhiteBorder"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,13 +84,14 @@
                     android:id="@+id/etPrecio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/EditTextWhiteBorder"
                     android:padding="16dp"
                     android:layout_marginBottom="10dp"
                     android:hint="Precio"
+                    style="@style/EditTextWhiteBorder"
                     android:inputType="numberDecimal"
                     android:maxLength="20"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,12 +107,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    style="@style/EditTextWhiteBorder"
                     android:padding="16dp"
                     android:hint="Cantidad"
                     android:maxLength="4"
                     android:inputType="numberDecimal"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    style="@style/EditTextWhiteBorder"
+                    android:textSize="18sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,8 +126,7 @@
                 android:layout_marginTop="10dp"
                 android:clickable="false"
                 android:text="Guardar"
-                android:textColor="@color/orange"
-                android:background="@drawable/button_rounded_corners"/>
+                android:backgroundTint="@color/orange"/>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

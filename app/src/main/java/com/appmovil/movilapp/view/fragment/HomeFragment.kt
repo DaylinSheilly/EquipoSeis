@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     private fun volverMenu() {
         val navController = findNavController()
         navController.navigate(R.id.action_homeFragment_to_homeInvetoryFragment)
