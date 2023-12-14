@@ -36,6 +36,9 @@
         android:name="com.appmovil.movilapp.view.fragment.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_homeInvetoryFragment"
+            app:destination="@+id/homeInventoryFragment" />
     </fragment>
 
     <fragment
