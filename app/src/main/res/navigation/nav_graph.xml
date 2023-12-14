@@ -46,5 +46,8 @@
         <action
             android:id="@+id/action_homeEditarFragment_to_homeDetallesFragment"
             app:destination="@+id/homeDetalleFragment" />
+        <action
+            android:id="@+id/action_homeEditarFragmet_to_homeInvetoryFragment"
+            app:destination="@+id/homeInventoryFragment" />
     </fragment>
 </navigation>

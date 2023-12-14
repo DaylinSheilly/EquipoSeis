@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.appmovil.movilapp.R
@@ -40,6 +42,15 @@ class HomeEditarFragment : Fragment() {
     private fun setup() {
         binding.btnActualizarArticulo.setOnClickListener {
             actualizarProducto()
+        }
+        binding.etNombreArticulo.addTextChangedListener {
+            deshabilitarBoton()
+        }
+        binding.etPrecio.addTextChangedListener {
+            deshabilitarBoton()
+        }
+        binding.etCantidad.addTextChangedListener {
+            deshabilitarBoton()
         }
         binding.contentToolbar.backToolbar.setOnClickListener {
             volverDetalles()
@@ -76,13 +87,28 @@ class HomeEditarFragment : Fragment() {
                 )
             )
 
-            receivedArticulo = articulo
-
             Toast.makeText(context, "Articulo actualizado", Toast.LENGTH_SHORT).show()
-            volverDetalles()
+            volverMenu()
         } else {
-            // Botón debería estar desactivado
-//            Toast.makeText(context, "Llene los campos", Toast.LENGTH_SHORT).show()
+            // Botón debería estar desactivado, por ende no mostrar este mensaje
+            Toast.makeText(context, "Llene los campos", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun deshabilitarBoton() {
+        val nombre = binding.etNombreArticulo.text.toString()
+        val precio = binding.etPrecio.text.toString()
+        val cantidad = binding.etCantidad.text.toString()
+
+        if (nombre.isEmpty() or precio.isEmpty() or cantidad.isEmpty()) {
+            binding.btnActualizarArticulo.isEnabled = false
+            binding.btnActualizarArticulo.backgroundTintList =
+                this.context?.let { ContextCompat.getColorStateList(it, R.color.gray) };
+        } else{
+            binding.btnActualizarArticulo.isEnabled = true
+            binding.btnActualizarArticulo.backgroundTintList =
+                this.context?.let { ContextCompat.getColorStateList(it, R.color.orange) };
+
         }
     }
 
@@ -92,6 +118,11 @@ class HomeEditarFragment : Fragment() {
         val bundle = Bundle()
         bundle.putSerializable("articulo", receivedArticulo)
         navController.navigate(R.id.action_homeEditarFragment_to_homeDetallesFragment, bundle)
+    }
+
+    private fun volverMenu() {
+        val navController = findNavController()
+        navController.navigate(R.id.action_homeEditarFragmet_to_homeInvetoryFragment)
     }
 
 }
