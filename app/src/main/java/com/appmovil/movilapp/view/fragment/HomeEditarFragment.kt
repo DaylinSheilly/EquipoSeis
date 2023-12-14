@@ -87,11 +87,11 @@ class HomeEditarFragment : Fragment() {
                 )
             )
 
-            Toast.makeText(context, "Articulo actualizado", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Articulo actualizado", Toast.LENGTH_SHORT).show()
             volverMenu()
         } else {
             // Botón debería estar desactivado, por ende no mostrar este mensaje
-            Toast.makeText(context, "Llene los campos", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Llene los campos", Toast.LENGTH_SHORT).show()
         }
     }
 
