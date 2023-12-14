@@ -62,7 +62,7 @@ class HomeDetalleFragment() : Fragment() {
         db.collection("articulo").document(receivedArticulo.codigo.toString()).delete()
         val updateIntent = Intent(context, TotalInventoryWidget::class.java)
         updateIntent.action = "UPDATE_WIDGET"
-        context?.sendBroadcast(updateIntent)        
+        context?.sendBroadcast(updateIntent)
         val navController = findNavController()
         navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
     }
