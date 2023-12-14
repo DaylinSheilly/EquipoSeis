@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentEditarDetallesBinding
 import com.appmovil.movilapp.model.Articulo
+import com.appmovil.movilapp.view.widget.TotalInventoryWidget
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeEditarFragment : Fragment() {
@@ -86,6 +87,10 @@ class HomeEditarFragment : Fragment() {
                     "cantidad" to articulo.cantidad,
                 )
             )
+
+            val updateIntent = Intent(context, TotalInventoryWidget::class.java)
+            updateIntent.action = "UPDATE_WIDGET"
+            context?.sendBroadcast(updateIntent)
 
 //            Toast.makeText(context, "Articulo actualizado", Toast.LENGTH_SHORT).show()
             volverMenu()
