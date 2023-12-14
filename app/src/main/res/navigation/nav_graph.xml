@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_homeDetalleFragment_to_homeInvetoryFragment"
             app:destination="@+id/homeInventoryFragment" />
+        <action
+            android:id="@+id/action_homeDetallesFragment_to_homeEditarFragment"
+            app:destination="@+id/homeEditarFragment" />
     </fragment>
 
     <fragment
@@ -33,5 +36,15 @@
         android:name="com.appmovil.movilapp.view.fragment.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeEditarFragment"
+        android:name="com.appmovil.movilapp.view.fragment.HomeEditarFragment"
+        android:label="HomeEditarFragment"
+        tools:layout="@layout/fragment_editar_detalles">
+        <action
+            android:id="@+id/action_homeEditarFragment_to_homeDetallesFragment"
+            app:destination="@+id/homeDetalleFragment" />
     </fragment>
 </navigation>

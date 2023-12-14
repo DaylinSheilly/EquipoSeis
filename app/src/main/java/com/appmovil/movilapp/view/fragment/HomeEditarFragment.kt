@@ -41,6 +41,9 @@ class HomeEditarFragment : Fragment() {
         binding.btnActualizarArticulo.setOnClickListener {
             actualizarProducto()
         }
+        binding.contentToolbar.backToolbar.setOnClickListener {
+            volverMenu()
+        }
         cargarDetalles()
     }
 
@@ -50,10 +53,10 @@ class HomeEditarFragment : Fragment() {
     }
 
     private fun cargarDetalles() {
-        binding.etCodigo.text = "Id: " + receivedArticulo.codigo
+        binding.etCodigo.text = "Id: " + receivedArticulo.codigo.toString()
         binding.etNombreArticulo.setText(receivedArticulo.nombre)
-        binding.etPrecio.setText(receivedArticulo.precio)
-        binding.etCantidad.setText(receivedArticulo.cantidad)
+        binding.etPrecio.setText(receivedArticulo.precio.toString())
+        binding.etCantidad.setText(receivedArticulo.cantidad.toString())
     }
 
     private fun actualizarProducto() {
@@ -80,10 +83,12 @@ class HomeEditarFragment : Fragment() {
         }
     }
 
-
     private fun volverMenu() {
         val navController = findNavController()
         // Realiza la navegación hacia la acción homeInventoryFragment->agregarArticulo
-        navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
+        val bundle = Bundle()
+        bundle.putSerializable("articulo", receivedArticulo)
+        navController.navigate(R.id.action_homeEditarFragment_to_homeDetallesFragment, bundle)
     }
+
 }

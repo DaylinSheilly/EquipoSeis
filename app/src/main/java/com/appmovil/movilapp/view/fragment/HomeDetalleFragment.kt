@@ -6,17 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentVerDetallesBinding
 import com.appmovil.movilapp.model.Articulo
-import com.appmovil.movilapp.view.adapter.ArticulosAdapter
-import com.appmovil.movilapp.viewmodel.ArticulosViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeDetalleFragment() : Fragment() {
@@ -63,7 +57,7 @@ class HomeDetalleFragment() : Fragment() {
         val navController = findNavController()
         val bundle = Bundle()
         bundle.putSerializable("articulo", receivedArticulo)
-        navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
+        navController.navigate(R.id.action_homeDetallesFragment_to_homeEditarFragment, bundle)
     }
 
     private fun eliminarProducto() {
