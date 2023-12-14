@@ -9,16 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.appmovil.movilapp.databinding.FragmentHomeBinding
 import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.HomeActivity
 import com.appmovil.movilapp.view.LoginActivity
+import com.appmovil.movilapp.view.widget.TotalInventoryWidget
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var sharedPreferences: SharedPreferences
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
@@ -32,7 +33,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
         setup()
 
     }
@@ -59,6 +59,10 @@ class HomeFragment : Fragment() {
                     "cantidad" to articulo.cantidad
                 )
             )
+
+            val updateIntent = Intent(context, TotalInventoryWidget::class.java)
+            updateIntent.action = "UPDATE_WIDGET"
+            context?.sendBroadcast(updateIntent)
 
             Toast.makeText(context, "Articulo guardado", Toast.LENGTH_SHORT).show()
             limpiarCampos()

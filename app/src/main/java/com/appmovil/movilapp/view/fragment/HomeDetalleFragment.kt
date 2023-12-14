@@ -1,6 +1,7 @@
 package com.appmovil.movilapp.view.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.appmovil.movilapp.R
 import com.appmovil.movilapp.databinding.FragmentVerDetallesBinding
 import com.appmovil.movilapp.model.Articulo
 import com.appmovil.movilapp.view.adapter.ArticulosAdapter
+import com.appmovil.movilapp.view.widget.TotalInventoryWidget
 import com.appmovil.movilapp.viewmodel.ArticulosViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -58,6 +60,9 @@ class HomeDetalleFragment() : Fragment() {
 
     private fun eliminarProducto() {
         db.collection("articulo").document(receivedArticulo.codigo.toString()).delete()
+        val updateIntent = Intent(context, TotalInventoryWidget::class.java)
+        updateIntent.action = "UPDATE_WIDGET"
+        context?.sendBroadcast(updateIntent)        
         val navController = findNavController()
         navController.navigate(R.id.action_homeDetalleFragment_to_homeInvetoryFragment)
     }

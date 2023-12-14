@@ -44,13 +44,13 @@ class TotalInventoryWidget: AppWidgetProvider() {
     private fun sesion(context: Context): Boolean{
         val loginPrefs = context?.getSharedPreferences(PREFS_LOGIN, Context.MODE_PRIVATE)
         val email = loginPrefs?.getString("email",null)
+        Log.i("widget", "sesion $email")
         return email != null
     }
     override fun onReceive(context: Context?, intent: Intent?) {
         super.onReceive(context, intent)
         val prefs = context?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val totalVisible = prefs?.getBoolean("totalVisible", false)
-
         if (intent?.action == "TOGGLE_VISIBILITY") {
             Log.i("widget", "ojo pulsado")
 
@@ -101,18 +101,31 @@ class TotalInventoryWidget: AppWidgetProvider() {
                 }
             }
             }else if (intent?.action == "GO_INVENTORY") {
+            Log.i("widget", "GO INVENTORY")
                 if(sesion(context!!)){
+                    Log.i("widget", "GO INVENTORY TRU")
+
                     val inventoryIntent = Intent(context, HomeActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }
                     context.startActivity(inventoryIntent)
                  }else{
+                    Log.i("widget", "GO INVENTORY FOLS")
                     val loginIntent = Intent(context, LoginActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         putExtra("OnLoginRedirectToIventory", true)
                     }
                     context.startActivity(loginIntent)
                 }
+        }else if (intent?.action == "UPDATE_WIDGET") {
+            Log.i("widget", "update")
+            AppWidgetManager.getInstance(context).let { appWidgetManager ->
+                val thisWidget = ComponentName(context!!, TotalInventoryWidget::class.java)
+                val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
+                for (appWidgetId in appWidgetIds) {
+                    updateAppWidget(context, appWidgetManager, appWidgetId, articuloRepository)
+                }
+            }
         }
     }
 

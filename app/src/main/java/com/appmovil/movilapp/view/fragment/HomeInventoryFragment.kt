@@ -38,7 +38,6 @@ class HomeInventoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
-        dataLogin()
         setup()
         listarProducto()
     }
@@ -85,11 +84,5 @@ class HomeInventoryFragment : Fragment() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-    }
-
-    private fun dataLogin() {
-        val bundle = requireActivity().intent.extras
-        val email = bundle?.getString("email")
-        sharedPreferences.edit().putString("email",email).apply()
     }
 }
