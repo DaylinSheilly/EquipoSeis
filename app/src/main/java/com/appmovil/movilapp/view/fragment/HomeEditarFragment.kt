@@ -66,7 +66,7 @@ class HomeEditarFragment : Fragment() {
         val cantidad = binding.etCantidad.text.toString()
 
         if (nombre.isNotEmpty() && precio.isNotEmpty() && cantidad.isNotEmpty()) {
-            val articulo = Articulo(codigo.toInt(), nombre, precio.toInt(), cantidad.toInt())
+            val articulo = Articulo(codigo, nombre, precio.toInt(), cantidad.toInt())
 
             db.collection("articulo").document(articulo.codigo.toString()).update(
                 mapOf(
@@ -76,10 +76,13 @@ class HomeEditarFragment : Fragment() {
                 )
             )
 
+            receivedArticulo = articulo
+
             Toast.makeText(context, "Articulo actualizado", Toast.LENGTH_SHORT).show()
             volverDetalles()
         } else {
-            Toast.makeText(context, "Llene los campos", Toast.LENGTH_SHORT).show()
+            // Botón debería estar desactivado
+//            Toast.makeText(context, "Llene los campos", Toast.LENGTH_SHORT).show()
         }
     }
 
