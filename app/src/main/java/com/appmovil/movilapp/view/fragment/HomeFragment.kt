@@ -31,6 +31,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setup()
 
+        binding.btnGuardarArticulo.setOnClickListener {
+            guardarProducto()
+            checkFieldsAndEnableButton()
+        }
+
     }
 
     private fun setup() {
@@ -70,6 +75,15 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun checkFieldsAndEnableButton() {
+        val codigo = binding.etCodigo.text.toString()
+        val nombre = binding.etNombreArticulo.text.toString()
+        val precio = binding.etPrecio.text.toString()
+        val cantidad = binding.etCantidad.text.toString()
+
+        binding.btnGuardarArticulo.isEnabled = codigo.isNotEmpty() && precio.isNotEmpty()
+                                                && nombre.isNotEmpty() && cantidad.isNotEmpty()
+    }
 
     private fun volverMenu() {
         val navController = findNavController()
