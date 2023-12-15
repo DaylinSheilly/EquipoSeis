@@ -20,6 +20,7 @@ class ArticulosViewModel @Inject constructor(
 
     private val _progresState = MutableLiveData(false)
     val progresState: LiveData<Boolean> = _progresState
+
     fun getListArticulos(){
         viewModelScope.launch {
             _listArticulos.value = repository.getListArticulo()

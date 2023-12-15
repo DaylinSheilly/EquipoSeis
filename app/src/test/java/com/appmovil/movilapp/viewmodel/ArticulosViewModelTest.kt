@@ -49,4 +49,19 @@ class ArticulosViewModelTest {
         Dispatchers.resetMain()
 
     }
+
+    @Test
+    fun`test metodo getListArticulos`() = runBlocking {
+        //given
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+        val mockArticulos = mutableListOf(
+            Articulo(1, "peine", 7000, 3)
+        )
+        `when`(articuloRepository.getListArticulo()).thenReturn(mockArticulos)
+        //when
+        articulosViewModel.getListArticulos()
+        //then
+        assertEquals(articulosViewModel.listInventory.value, mockArticulos)
+        Dispatchers.resetMain()
+    }
 }
