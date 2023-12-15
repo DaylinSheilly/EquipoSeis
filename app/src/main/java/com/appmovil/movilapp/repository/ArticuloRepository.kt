@@ -39,5 +39,19 @@ class ArticuloRepository @Inject constructor(
         }
         return listArticulos
     }
+
+    suspend fun guardarProducto(nuevoArticulo: Articulo) {
+        withContext(Dispatchers.IO) {
+            db.collection("articulo").document(nuevoArticulo.codigo.toString()).set(
+                hashMapOf(
+                    "codigo" to nuevoArticulo.codigo,
+                    "nombre" to nuevoArticulo.nombre,
+                    "precio" to nuevoArticulo.precio,
+                    "cantidad" to nuevoArticulo.cantidad
+                )
+            ).await()
+        }
+
+    }
 }
 
