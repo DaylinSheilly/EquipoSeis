@@ -33,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
         setup()
         controladores()
         binding.btnLogin.isEnabled = false
+        binding.btnLogin.setTextColor(Color.GRAY)
         binding.tvRegister.setTextColor(Color.parseColor("#9EA1A1"))
         binding.tvRegister.isEnabled = false
     }
@@ -73,7 +74,13 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.isEnabled = email.isNotEmpty() && password.isNotEmpty()
         binding.tvRegister.isEnabled = email.isNotEmpty() && password.isNotEmpty()
         binding.tvRegister.setTextColor(Color.parseColor("#FFFFFFFF"))
-        binding.tvRegister.setTypeface(Typeface.DEFAULT_BOLD)
+        if (binding.btnLogin.isEnabled){
+
+            binding.btnLogin.setTextColor(Color.WHITE)
+        }else{
+
+            binding.btnLogin.setTextColor(Color.GRAY)
+        }
     }
 
 
